@@ -34,7 +34,8 @@ public class Main {
 
     public static int internalNodesCount(Node node) {
         if (node == null) return 0;
-        else return (1 + internalNodesCount(node.left) + internalNodesCount(node.right));
+        else return (1 + internalNodesCount(node.left) + 
+                     internalNodesCount(node.right));
     }
 
     public static void deleteTree(Node node) {
@@ -120,7 +121,9 @@ public class Main {
         if (root1 == null && root2 == null) return true;
 
         if (root1 != null && root2 != null)
-            return root1.m_data == root2.m_data && identical(root1.left, root2.left) && identical(root1.right, root2.right);
+            return root1.m_data == root2.m_data &&
+            identical(root1.left, root2.left) && 
+            identical(root1.right, root2.right);
         return false;
     }
 
