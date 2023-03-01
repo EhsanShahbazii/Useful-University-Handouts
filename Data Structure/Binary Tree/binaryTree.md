@@ -130,3 +130,38 @@ public static int maxInTree(Node node) {
 - preorder (VLR): A B D C E G F H I
 - inorder (LVR): D B A E G C H F I
 - postorder (LRV): D B G E H I F C A
+## پیاده سازی پیمایش ها
+پیمایش پیشوندی به صورت زیر نوشته می شود:
+```java
+public static void preOrder(Node root) {
+    if (root == null) {}
+    else {
+        System.out.println(root.m_data);
+        preOrder(root.left);
+        preOrder(root.right);
+    }
+}
+```
+پیمایش میانوندی نیز به صورت زیر است:
+```java
+public static void inOrder(Node root) {
+    if (root == null) {}
+    else {
+        inOrder(root.left);
+        System.out.println(root.m_data);
+        inOrder(root.right);
+    }
+}
+```
+و در آخر پیسوندی به صورت زیر نوشته می شود:
+```java
+public static void postOrder(Node root) {
+    if (root == null) {}
+    else {
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.println(root.m_data);
+    }
+}
+```
+دقت کنید که تنها جای پرینت عوض می شود و بقیه دستورات به همان شکل می باشد.
