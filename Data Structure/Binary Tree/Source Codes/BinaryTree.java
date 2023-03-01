@@ -1,6 +1,10 @@
+import sun.misc.Queue;
+
+import java.util.Stack;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Node root = new Node(1);
         root.left = new Node(2);
         root.right = new Node(3);
@@ -8,7 +12,7 @@ public class Main {
         root.left.right = new Node(5);
         root.left.right.left = new Node(6);
 
-        preOrder(root);
+        levelOrder(root);
     }
 
     public static int nodeHeights(Node node) {
@@ -77,6 +81,75 @@ public class Main {
             postOrder(root.right);
             System.out.println(root.m_data);
         }
+    }
+
+    public static void inOrderStack(Node root) {
+        Stack<Node> stack = new Stack<>();
+        Node current = root;
+        boolean flag = false;
+
+        while (!flag) {
+            if (current != null) {
+                stack.push(current);
+                current = current.left;
+            } else {
+                if (!stack.empty()) {
+                    current = stack.pop();
+                    System.out.println(current);
+                    current = current.right;
+                } else {
+                    flag = true;
+                }
+            }
+        }
+    }
+
+    public static void levelOrder(Node root) throws InterruptedException {
+        Node temp = root;
+        Queue<Node> queue = new Queue<>();
+
+        while (temp != null) {
+            System.out.println(temp.m_data);
+
+            if (temp.left != null) queue.enqueue(temp.left);
+            if (temp.right != null) queue.enqueue(temp.right);
+
+            temp = queue.dequeue();
+        }
+    }
+
+    public static boolean identical(Node root1, Node root2) {
+        if (root1 == null && root2 == null) return true;
+
+        if (root1 != null && root2 != null)
+            return root1.m_data == root2.m_data && identical(root1.left, root2.left) && identical(root1.right, root2.right);
+        return false;
+    }
+
+    public static boolean isComplete(Node root) throws InterruptedException {
+        Node temp;
+        Queue<Node> queue = new Queue<>();
+        boolean flag = false;
+
+        if (root == null) return true;
+        queue.enqueue(root);
+
+        while (!queue.isEmpty()) {
+            temp = queue.dequeue();
+            if (temp.left != null) {
+                if (flag) return false;
+                queue.enqueue(temp.left);
+            } else {
+                flag = true;
+            }
+            if (temp.right != null) {
+                if (flag) return false;
+                queue.enqueue(temp.right);
+            } else {
+                flag = true;
+            }
+        }
+        return true;
     }
 }
 
