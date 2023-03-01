@@ -110,3 +110,23 @@ public static int maxInTree(Node node) {
     return Math.max(lmax, rmax);
 }
 ```
+## پیمایش درخت دودویی
+سه مدل پیمایش داریم که به عبارتند از:
+1. پیشوندی (preorder) => VLR => ریشه، چپ، راست
+2. میانوندی (inorder) => LVR => چپ، ریشه، راست
+3. پسوندی (postorder) => LRV => چپ، راست، ریشه
+
+مثال: سه پیمایش پیشوندی، میانوندی و پسوندی را در این درخت پیاده بکنید.
+```console
+            A
+          /   \
+         B      C
+        /     /   \
+       D     E     F
+              \   / \
+               G H   I
+```
+پاسخ: ابتدا پیشوندی بعد میانوندی و در نهایت پسوندی را می نویسیم:
+preorder (VLR): A B D C E G F H I
+inorder (LVR): D B A E G C H F I
+postorder (LRV): D B G E H I F C A
