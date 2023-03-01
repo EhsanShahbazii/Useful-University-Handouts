@@ -264,3 +264,33 @@ public static boolean identical(Node root1, Node root2) {
     return false;
 }
 ```
+
+## بررسی کامل بودن یک درخت دودویی
+درخت دودویی کامل در هر سطح به جز احتمالا آخرین سطح، کاملا پر شده است و همه گره ها تا جایی که ممکن است در چپ درخت قرار می گیرند. پیاده سازی به صورت زیر است:
+```java
+public static boolean isComplete(Node root) throws InterruptedException {
+    Node temp;
+    Queue<Node> queue = new Queue<>();
+    boolean flag = false;
+        
+    if (root == null) return true;
+    queue.enqueue(root);
+        
+    while (!queue.isEmpty()) {
+        temp = queue.dequeue();
+        if (temp.left != null) {
+            if (flag) return false;
+            queue.enqueue(temp.left);
+        } else {
+            flag = true;
+        }
+        if (temp.right != null) {
+            if (flag) return false;
+            queue.enqueue(temp.right);
+        } else {
+            flag = true;
+        }
+    }
+    return true;
+}
+```
