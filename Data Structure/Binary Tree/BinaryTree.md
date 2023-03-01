@@ -309,3 +309,18 @@ public static int findLevel(Node root, Node item, int level) {
     return index;
 }
 ```
+
+## تعیین اجداد یک گره در یک درخت دودویی
+برای یافتن اجداد یک گره می توان به صورت زیر نوشت:
+```java
+public static boolean ancestor(Node root, Node item) {
+    if (root == null) return false;
+    if (root == item) return true;
+
+    if (ancestor(root.left, item) || ancestor(root.right, item)) {
+        System.out.println(root.m_data);
+        return true;
+    }
+    return false;
+}
+```
