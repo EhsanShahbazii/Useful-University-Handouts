@@ -294,3 +294,18 @@ public static boolean isComplete(Node root) throws InterruptedException {
     return true;
 }
 ```
+## تعیین سطح یک گره در درخت دودویی
+برای یافتن سطح یک گره در یک درخت دودویی به صورت زیر کد می نوسیم. دقت کنید که پارامتر `level` همان لول شروعی می باشد.
+```java
+public static int findLevel(Node root, Node item, int level) {
+    if (root == null) return 0;
+    if (root == item) return level;
+
+    int index;
+    index = findLevel(root.left, item, level + 1);
+    if (index != 0) return index;
+    index = findLevel(root.right, item, level + 1);
+
+    return index;
+}
+```
