@@ -11,8 +11,6 @@ public class Main {
         root.left.left = new Node(4);
         root.left.right = new Node(5);
         root.left.right.left = new Node(6);
-
-        levelOrder(root);
     }
 
     public static int nodeHeights(Node node) {
@@ -150,6 +148,29 @@ public class Main {
             }
         }
         return true;
+    }
+
+    public static int findLevel(Node root, Node item, int level) {
+        if (root == null) return 0;
+        if (root == item) return level;
+
+        int index;
+        index = findLevel(root.left, item, level + 1);
+        if (index != 0) return index;
+        index = findLevel(root.right, item, level + 1);
+
+        return index;
+    }
+
+    public static boolean ancestor(Node root, Node item) {
+        if (root == null) return false;
+        if (root == item) return true;
+
+        if (ancestor(root.left, item) || ancestor(root.right, item)) {
+            System.out.println(root.m_data);
+            return true;
+        }
+        return false;
     }
 }
 
