@@ -166,7 +166,7 @@ public static void postOrder(Node root) {
 ```
 دقت کنید که تنها جای پرینت عوض می شود و بقیه دستورات به همان شکل می باشد.
 
-## پیاده سازی پیمایش میانوندی به صورت غیر بازگشتی
+## پیمایش میانوندی به صورت غیر بازگشتی
 ترتیب دستورات به صورت زیر است:
 1. اول یک استک `stack` خالی درست می کنیم.
 2. یک متغیر `current` می سازیم و مقدار اولیه `root` می دهیم.
@@ -177,3 +177,26 @@ public static void postOrder(Node root) {
    3. دوباره مرحله سوم را تکرار می کنیم.
 4. اگر مقدار `current` برابر با `null` شده و استک ما خالی شده باشد کار ما به اتمام رسیده است.
 
+به صورت زیر می توانیم این دستورات را پیاده سازی کنیم:
+```java
+public static void inOrderStack(Node root) {
+    Stack<Node> stack = new Stack<>();
+    Node current = root;
+    boolean flag = false;
+
+    while (!flag) {
+        if (current != null) {
+            stack.push(current);
+            current = current.left;
+        } else {
+            if (!stack.empty()) {
+                current = stack.pop();
+                System.out.println(current);
+                current = current.right;
+            } else {
+                flag = true;
+            }
+        }
+    }
+}
+```
