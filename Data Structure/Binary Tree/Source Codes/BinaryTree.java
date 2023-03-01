@@ -8,7 +8,7 @@ public class Main {
         root.left.right = new Node(5);
         root.left.right.left = new Node(6);
 
-        System.out.println();
+        preOrder(root);
     }
 
     public static int nodeHeights(Node node) {
@@ -50,6 +50,33 @@ public class Main {
         rmax = maxInTree(node.right);
 
         return Math.max(lmax, rmax);
+    }
+
+    public static void preOrder(Node root) {
+        if (root == null) {}
+        else {
+            System.out.println(root.m_data);
+            preOrder(root.left);
+            preOrder(root.right);
+        }
+    }
+
+    public static void inOrder(Node root) {
+        if (root == null) {}
+        else {
+            inOrder(root.left);
+            System.out.println(root.m_data);
+            inOrder(root.right);
+        }
+    }
+
+    public static void postOrder(Node root) {
+        if (root == null) {}
+        else {
+            postOrder(root.left);
+            postOrder(root.right);
+            System.out.println(root.m_data);
+        }
     }
 }
 
