@@ -131,7 +131,7 @@ public static int maxInTree(Node node) {
 - inorder (LVR): D B A E G C H F I
 - postorder (LRV): D B G E H I F C A
 ## پیاده سازی پیمایش ها
-پیمایش پیشوندی به صورت زیر نوشته می شود:
+پیمایش پیشوندی به صورت زیر نوشته می شود: preOrder VLR
 ```java
 public static void preOrder(Node root) {
     if (root == null) {}
@@ -142,7 +142,7 @@ public static void preOrder(Node root) {
     }
 }
 ```
-پیمایش میانوندی نیز به صورت زیر است:
+پیمایش میانوندی نیز به صورت زیر است: inOrder LVR
 ```java
 public static void inOrder(Node root) {
     if (root == null) {}
@@ -153,7 +153,7 @@ public static void inOrder(Node root) {
     }
 }
 ```
-و در آخر پیسوندی به صورت زیر نوشته می شود:
+و در آخر پسوندی به صورت زیر نوشته می شود: postOrder LRV
 ```java
 public static void postOrder(Node root) {
     if (root == null) {}
