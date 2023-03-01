@@ -59,3 +59,54 @@ public static void main(String[] args) {
    root.left.right.left = new Node(6);
 }
 ```
+برای یافتن ارتفاع یک گره به صورت زیر عمل می کنیم:
+```java
+public static int nodeHeights(Node node) {
+    if (node == null) return -1;
+    if (node.left == null && node.right == null) return 0;
+    else {
+        int lh = nodeHeights(node.left);
+        int rh = nodeHeights(node.right);
+
+        return Math.max(lh + 1, rh + 1);
+    }
+}
+```
+برای محاسبه تعداد برگ ها به صورت زیر می نویسیم:
+```java
+public static int leafCounts(Node node) {
+    if (node == null) return 0;
+    if (node.left == null && node.right == null) return 1;
+    else {
+        return leafCounts(node.left) + leafCounts(node.right);
+    }
+}
+```
+برای یافتن تعداد گره ها نیز این کد را می نویسیم:
+```java
+public static int internalNodesCount(Node node) {
+    if (node == null) return 0;
+    else return (1 + internalNodesCount(node.left) + internalNodesCount(node.right));
+}
+```
+برای حذف کردن کل درخت نیز به صورت زیر می نویسیم:
+```java
+public static void deleteTree(Node node) {
+    if (node == null) return;
+    deleteTree(node.left);
+    deleteTree(node.right);
+    System.out.println(node.m_data);
+}
+```
+برای یافتن بزرگ ترین مقدار در بین گره های درخت نیز می نویسیم:
+```java
+public static int maxInTree(Node node) {
+    int lmax, rmax;
+    if (node == null) return Integer.MIN_VALUE;
+
+    lmax = maxInTree(node.left);
+    rmax = maxInTree(node.right);
+
+    return Math.max(lmax, rmax);
+}
+```
