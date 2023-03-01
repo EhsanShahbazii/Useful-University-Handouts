@@ -200,3 +200,35 @@ public static void inOrderStack(Node root) {
     }
 }
 ```
+
+## الگوریتم پیمایش به ترتیب سطح (Level Order)
+گره ها را از بالا به پایین و در هر سطح از سمت چپ به راست ملاقات می کنیم. به طور مثال داریم:
+```console
+            A
+          /   \
+         B      C
+        /     /   \
+       D     E     F
+              \   / \
+               G H   I
+```
+که به صورت زیر گره ها ملاقات می شوند:
+```console
+A B C D E F G H I
+```
+و پیاده سازی آن به صورت زیر می باشد:
+```java
+public static void levelOrder(Node root) throws InterruptedException {
+    Node temp = root;
+    Queue<Node> queue = new Queue<>();
+
+    while (temp != null) {
+        System.out.println(temp.m_data);
+
+        if (temp.left != null) queue.enqueue(temp.left);
+        if (temp.right != null) queue.enqueue(temp.right);
+
+        temp = queue.dequeue();
+    }
+}
+```
