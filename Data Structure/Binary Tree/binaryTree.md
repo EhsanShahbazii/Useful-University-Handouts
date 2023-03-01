@@ -127,6 +127,6 @@ public static int maxInTree(Node node) {
                G H   I
 ```
 پاسخ: ابتدا پیشوندی بعد میانوندی و در نهایت پسوندی را می نویسیم:
-preorder (VLR): A B D C E G F H I
-inorder (LVR): D B A E G C H F I
-postorder (LRV): D B G E H I F C A
+- preorder (VLR): A B D C E G F H I
+- inorder (LVR): D B A E G C H F I
+- postorder (LRV): D B G E H I F C A
