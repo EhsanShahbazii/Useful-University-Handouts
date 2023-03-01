@@ -253,3 +253,14 @@ postorder: 4 6 5 2 3 1
 
 ## رسم درخت دودویی با پیمایش پیشوندی و پسوندی
 در این حالت ما می توانیم بگوییم کدام گره ها تک فرزند هستند ولی نمی توانیم موقعیت آن ها را به دست بیاوریم. یعنی اگر `k` تعداد گره های تک فرزندی ما باشد، به تعداد `n = 2^k` تا حالت برای رسم درخت خواهیم داشت.
+
+## بررسی یکسان بودن دو درخت دودویی
+دو درخت زمانیکه مقادیر گره ها با هم برابر باشند و ترتیب آنها نیز با هم یکسان باشد، این دو درخت با هم برابر می شوند. پیاده سازی آن به صورت زیر است:
+```java
+public static boolean identical(Node root1, Node root2) {
+    if (root1 == null && root2 == null) return true;
+    if (root1 != null && root2 != null)
+        return root1.m_data == root2.m_data && identical(root1.left, root2.left) && identical(root1.right, root2.right);
+    return false;
+}
+```
