@@ -342,3 +342,55 @@ public static Node findLCA(Node root, Node node1, Node node2) {
     return (l_lca != null) ? l_lca : r_lca;
 }
 ```
+
+## درخت دودویی نخ کشی شده (Threaded Binary Tree)
+با استفاده از اشاره گر های بدون استفاده می توان به عناصر قبلی یا بعدی در یک پیمایش اشاره کرد که باعث بالا رفتن سرعت پیمایش درخت می شود. به درختی که از اشاره گر های بدون استفاده آ« این چنین استفاده شود، درخت نخی می گویند.
+
+## ساختار گره در درخت نخی
+اگر `flag` ها مقدار `1` بگیرند یعنی اشاره گر نخی است در غیر این صورت اشاره گر عادی است.
+```java
+class TNode {
+    int m_data;
+    TNode left;
+    TNode right;
+    int l_flag;
+    int r_flag;
+
+    TNode() {}
+
+    TNode(int data) {
+        m_data = data;
+        left = null;
+        right = null;
+        l_flag = 0;
+        r_flag = 0;
+    }
+}
+```
+حال این روش در پیمایش میانوندی باعث بهینه تر شدن و افزایش سرعت می شود. می توان نوشت:
+```java
+public static void threadInOrder(TNode root) {
+    TNode current = leftMost(root);
+
+    while (current != null) {
+        System.out.println(current.m_data);
+
+        if (current.l_flag == 1)
+            current = current.right;
+        else
+            current = leftMost(current.right);
+    }
+}
+```
+تابع `leftMost` چپ ترین گره ممکن را در درخت پیدا می کند که به صورت زیر است:
+```java
+public static TNode leftMost(TNode root) {
+    if (root == null) return null;
+
+    while (root.left != null) {
+        root = root.left;
+    }
+
+    return root;
+}
+```
