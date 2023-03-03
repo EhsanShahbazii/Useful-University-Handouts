@@ -185,6 +185,29 @@ public class Main {
 
         return (l_lca != null) ? l_lca : r_lca;
     }
+
+    public static void threadInOrder(TNode root) {
+        TNode current = leftMost(root);
+
+        while (current != null) {
+            System.out.println(current.m_data);
+
+            if (current.l_flag == 1)
+                current = current.right;
+            else
+                current = leftMost(current.right);
+        }
+    }
+
+    public static TNode leftMost(TNode root) {
+        if (root == null) return null;
+
+        while (root.left != null) {
+            root = root.left;
+        }
+
+        return root;
+    }
 }
 
 class Node {
@@ -198,5 +221,23 @@ class Node {
         m_data = data;
         left = null;
         right = null;
+    }
+}
+
+class TNode {
+    int m_data;
+    TNode left;
+    TNode right;
+    int l_flag;
+    int r_flag;
+
+    TNode() {}
+
+    TNode(int data) {
+        m_data = data;
+        left = null;
+        right = null;
+        l_flag = 0;
+        r_flag = 0;
     }
 }
