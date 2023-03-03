@@ -70,4 +70,42 @@ public static boolean search(Node root, int value) {
 1. اگر گره فاقد فرزند باشد، به سادگی حدف شده و نیازی به تنظیم درخت نمی باشد.
 2. اگر گره فقط دارای یک فرزند باشد، فرزند آن به طرف بالا در درخت منتقل می شود.
 3. اگر دارای دو فرزند باشد، گره بعدی یا قبلی در پیمایش `inorder` جای آن را می گیرد.
-4. 
+
+## پیاده سازی حذف یک گره در درخت جستجوی دودویی
+برای حذف یک گره از درخت به صورت زیر می نویسیم:
+```java
+public static Node remove(Node root, int value) {
+    if (root == null) return root;
+    Node temp;
+
+    if (value < root.m_data)
+        root.left = remove(root.left, value);
+    else if (value > root.m_data)
+        root.right = remove(root.right, value);
+    else {
+        if (root.left == null) {
+            temp = root.right;
+            return root;
+        } else if (root.right == null) {
+            temp = root.left;
+            return root;
+        }
+
+        temp = min(root.right);
+        root.m_data = temp.m_data;
+        root.right = remove(root.right, temp.m_data);
+    }
+    return root;
+}
+```
+برای پیدا کردن چپ ترین گره در یک درخت به صورت زیر می توانیم بنویسیم:
+```java
+public static Node min(Node root) {
+    Node temp = root;
+
+    while (temp.left != null)
+        temp = temp.left;
+
+    return temp;
+}
+```
