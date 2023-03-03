@@ -4,4 +4,4 @@
 ## Contents
 
 ### [Data Structure](Data%20Structure/)
-- [Binary Tree](Data%20Structure/Binary%20Tree/BinaryTree.md)
+- [Binary Tree](Data%20Structure/Binary%20Tree/BinaryTree.md) (Complete)
