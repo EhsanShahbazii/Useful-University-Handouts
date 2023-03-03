@@ -294,6 +294,7 @@ public static boolean isComplete(Node root) throws InterruptedException {
     return true;
 }
 ```
+
 ## تعیین سطح یک گره در درخت دودویی
 برای یافتن سطح یک گره در یک درخت دودویی به صورت زیر کد می نوسیم. دقت کنید که پارامتر `level` همان لول شروعی می باشد.
 ```java
@@ -322,5 +323,22 @@ public static boolean ancestor(Node root, Node item) {
         return true;
     }
     return false;
+}
+```
+
+## نزدیک ترین جد مشترک دو گره (LCA)
+برای یافتن نزدیک ترین جد مشترک یا همان (Lowest Common Ansector) به صورت زیر می نویسیم:
+```java
+public static Node findLCA(Node root, Node node1, Node node2) {
+    if (root == null) return null;
+    if (root == node1 || root == node2) return root;
+
+    Node l_lca, r_lca;
+    l_lca = findLCA(root.left, node1, node2);
+    r_lca = findLCA(root.right, node1, node2);
+
+    if (l_lca != null && r_lca != null) return root;
+
+    return (l_lca != null) ? l_lca : r_lca;
 }
 ```
