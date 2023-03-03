@@ -34,8 +34,7 @@ public class Main {
 
     public static int internalNodesCount(Node node) {
         if (node == null) return 0;
-        else return (1 + internalNodesCount(node.left) + 
-                     internalNodesCount(node.right));
+        else return (1 + internalNodesCount(node.left) + internalNodesCount(node.right));
     }
 
     public static void deleteTree(Node node) {
@@ -121,9 +120,7 @@ public class Main {
         if (root1 == null && root2 == null) return true;
 
         if (root1 != null && root2 != null)
-            return root1.m_data == root2.m_data &&
-            identical(root1.left, root2.left) && 
-            identical(root1.right, root2.right);
+            return root1.m_data == root2.m_data && identical(root1.left, root2.left) && identical(root1.right, root2.right);
         return false;
     }
 
@@ -174,6 +171,19 @@ public class Main {
             return true;
         }
         return false;
+    }
+
+    public static Node findLCA(Node root, Node node1, Node node2) {
+        if (root == null) return null;
+        if (root == node1 || root == node2) return root;
+
+        Node l_lca, r_lca;
+        l_lca = findLCA(root.left, node1, node2);
+        r_lca = findLCA(root.right, node1, node2);
+
+        if (l_lca != null && r_lca != null) return root;
+
+        return (l_lca != null) ? l_lca : r_lca;
     }
 }
 
