@@ -10,7 +10,6 @@
 
 ## مرتب سازی حبابی
 در این روش عناصر دو به دو مقایسه می شود و در هر فاز حداقل یک عنصر در جای اصلی خود قرار می گیرد.
-![bubble sort gif](assets/Bubble-sort.gif)
 ```java
 public static int[] bubbleSort(int[] list) {
     int i, j;
@@ -70,7 +69,6 @@ public static int[] bubbleSortOp(int[] list) {
 
 ## مرتب سازی انتخابی
 در این روش کوچک ترین عنصر پیدا شده و در سمت چپ قرار می گیرد. در این حالت ما آرایه به دو قسمت سمت چپ(مرتب شده) و سمت راست(نا مرتب) داریم. هر باز کوچک ترین عضو را در قسمت راست پیدا می کنیم و به سمت جپ انتقال می دهیم.
-![Insertion sort gif](assets/Insertion-sort.gif)
 ```java
 public static int[] insertionSort(int[] list) {
     int i, j, key, min;
