@@ -50,7 +50,7 @@ public static int[] bubbleSortOp(int[] list) {
 در گرافیک کامپیوتری، به دلیل توانایی آن برای شناسایی یک خطای کوچک (مانند جابجایی فقط دو عنصر) در آرایه‌های تقریبا مرتب شده و رفع آن فقط با خطی محبوب است.
 پیچیدگی `(2n)`.
 
-### مزایا:
+### مزایا
 - مرتب سازی حبابی به راحتی قابل درک و پیاده سازی است.
 - به هیچ فضای حافظه اضافی نیاز ندارد.
 - سازگار با انواع مختلف داده است.
@@ -62,38 +62,35 @@ public static int[] bubbleSortOp(int[] list) {
 ### تحلیل الگوریتم
 |پرفورمنس|پیچیدگی|
 |------|------|
-|Worst-case performance|`O(n^2)` comparisons, `O(n^2)` swaps|
+|Worst-case performance|`O(n^2)` comparisons and swaps|
 |Best-case performance|`O(n)` comparisons, `O(1)` swaps|
-|Average performance|`O(n^2)` comparisons, `O(n^2)` swaps|
+|Average performance|`O(n^2)`  comparisons and swaps|
 |Worst-case space complexity|`O(n)` total, `O(1)` auxiliary|
-### توضیحات پیچیدگی زمانی
-```console
-  At pass 1 :  Number of comparisons = (n-1)
-                     Number of swaps = (n-1)
 
-  At pass 2 :  Number of comparisons = (n-2)
-                     Number of swaps = (n-2)
+## مرتب سازی انتخابی
+در این روش کوچک ترین عنصر پیدا شده و در سمت چپ قرار می گیرد. در این حالت ما آرایه به دو قسمت سمت چپ(مرتب شده) و سمت راست(نا مرتب) داریم. هر باز کوچک ترین عضو را در قسمت راست پیدا می کنیم و به سمت جپ انتقال می دهیم.
+```java
+public static int[] insertionSort(int[] list) {
+    int i, j, key, min;
+    for (i = 0; i < list.length - 1; ++i) {
+        key = list[i];
+        j = i - 1;
+        while (j >= 0 && list[j] > key) {
+            list[j + 1] = list[j];
+            j = j - 1;
+        }
+        list[j + 1] = key;
+    }
+    return list;
+}
+```
+### کاربرد مرتب سازی حبابی
+مرتب سازی درج زمانی استفاده می شود که تعداد عناصر کم باشد. همچنین زمانی که آرایه ورودی تقریبا مرتب شده باشد، می تواند مفید باشد، فقط تعداد کمی از عناصر در یک آرایه کامل بزرگ قرار گرفته اند.
 
-  At pass 3 :  Number of comparisons = (n-3)
-                    Number of swaps = (n-3)
-                              .
-                              .
-                              .
-  At pass n-1 :  Number of comparisons = 1
-                        Number of swaps = 1
-
-Now , calculating total number of comparison required to sort the array
-= (n-1) + (n-2) +  (n-3) + . . . 2 + 1
-= (n-1)*(n-1+1)/2  { by using sum of N natural Number formula }
-= n (n-1)/2    
-```
-```console
-Total number of swaps = Total number of comparison
-Total number of comparison (Worst case) = n(n-1)/2
-Total number of swaps (Worst case) = n(n-1)/2
-```
-```console
-Worst and Average Case Time Complexity: O(N2). The worst case occurs when an array is reverse sorted.
-Best Case Time Complexity: O(N). The best case occurs when an array is already sorted.
-Auxiliary Space: O(1)
-```
+### تحلیل الگوریتم
+|پرفورمنس|پیچیدگی|
+|------|------|
+|Worst-case performance|`O(n^2)` comparisons and swaps|
+|Best-case performance|`O(n)` comparisons, `O(1)` swaps|
+|Average performance|`O(n^2)` comparisons and swaps|
+|Worst-case space complexity|`O(n)` total, `O(1)` auxiliary|
