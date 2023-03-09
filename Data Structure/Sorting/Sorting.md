@@ -70,9 +70,38 @@ public static int[] bubbleSortOp(int[] list) {
 ## مرتب سازی انتخابی
 در این روش کوچک ترین عنصر پیدا شده و در سمت چپ قرار می گیرد. در این حالت ما آرایه به دو قسمت سمت چپ(مرتب شده) و سمت راست(نا مرتب) داریم. هر باز کوچک ترین عضو را در قسمت راست پیدا می کنیم و به سمت جپ انتقال می دهیم.
 ```java
+public static int[] selectionSort(int[] list) {
+    int i,j, temp;
+    for (i = 0; i < list.length - 1; i++) {
+        int min = i;
+        for (j = i+1; j < list.length; j++)
+            if (list[j] < list[min]) min = j;
+        if (jMin != i) {
+            temp = list[i];
+            list[i] = list[min];
+            list[min] = temp;
+        }
+    }
+    return list;
+}
+```
+### کاربرد مرتب سازی حبابی
+مرتب سازی درج زمانی استفاده می شود که تعداد عناصر کم باشد. همچنین زمانی که آرایه ورودی تقریبا مرتب شده باشد، می تواند مفید باشد، فقط تعداد کمی از عناصر در یک آرایه کامل بزرگ قرار گرفته اند.
+
+### تحلیل پرفورمنس و پیچیدگی الگوریتم
+|پرفورمنس|پیچیدگی|
+|------|------|
+|Worst-case performance|`O(n^2)` comparisons, `O(n)` swaps|
+|Best-case performance|`O(n^2)` comparisons, `O(1)` swaps|
+|Average performance|`O(n^2)` comparisons, `O(n)` swaps|
+|Worst-case space complexity|`O(n)` total, `O(1)` auxiliary|
+
+## مرتب سازی درجی
+در این روش سمت چپ لیست مرتب شده است و سمت راست آن نا مرتب می باشد. یک به یک عنصر را نگاه کرده و آن را در جای مناسب سمت چپ می گذاریم و عناصر بعدی را به جلو شیفت می دهیم. تا وقتی که لیست به اتمام برسد.
+```java
 public static int[] insertionSort(int[] list) {
     int i, j, key, min;
-    for (i = 0; i < list.length - 1; ++i) {
+    for (i = 1; i < list.length; ++i) {
         key = list[i];
         j = i - 1;
         while (j >= 0 && list[j] > key) {
@@ -84,9 +113,23 @@ public static int[] insertionSort(int[] list) {
     return list;
 }
 ```
-### کاربرد مرتب سازی حبابی
-مرتب سازی درج زمانی استفاده می شود که تعداد عناصر کم باشد. همچنین زمانی که آرایه ورودی تقریبا مرتب شده باشد، می تواند مفید باشد، فقط تعداد کمی از عناصر در یک آرایه کامل بزرگ قرار گرفته اند.
-
+می توان مرتب سازی درجی را به صورت بازگشتی هم پیاده سازی کرد. به صورت زیر می نویسیم:
+```java
+public static void insertionSort(int[] list, int n) {
+    int last, j;
+    if (n > 1) {
+        insertionSort(list, n - 1);
+            
+        last = list[n - 1];
+        j = n - 2;
+        while (j >= 0 && list[j] > last) {
+            list[j + 1] = list[j];
+            j--;
+        }
+        list[j + 1] = last;
+    }
+}
+```
 ### تحلیل پرفورمنس و پیچیدگی الگوریتم
 |پرفورمنس|پیچیدگی|
 |------|------|
