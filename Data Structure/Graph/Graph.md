@@ -16,7 +16,7 @@
 ### زیر گراف (Subgraph)
 یک زیر گراف از گراف `(V,E)=G`، یک گراف `(W,F)=H` است.
 
-### نمایش گراف
+## نمایش گراف
 1. ماتریس همجواری (Adjacency Matrices)
 2. لیست همجواری (Adjacency List)
 
@@ -37,3 +37,34 @@
 - در ماتریس همجواری تتا از مرتبه `n^2` است.
 - در لیست همجواری تتا از مرتبه `V + E` است.
 
+## پیمایش گراف
+- پیمایش سطحی (Breadth First Search)
+- پیمایش عمقی (Depth First Search)
+
+### پیمایش سطحی (DFS)
+با شروع از یک گره ابتدا گره را وارد صف کرده سپس کلیه گره های مجاور آن (فرزندان گره از چپ به راست) را در صف درج می کنیم. حال عنصر بعدی را از صف حذف کرده و گره های مجاور آن را درج می کنیم. این عمل را ادامه می دهیم تا همه گره ها پیمایش شوند.
+- در پیمایش سطحی از `Queue` استفاده می کنیم.
+
+### تابع پیمایش سطحی
+شبه کد پیمایش سطحی (DFS) به صورت زیر است:
+``pseudocode
+BFS(G, s)
+  for each vertex (u from G.V - {s})
+    u.color = WHITE
+    u.d = infinitive
+    u.pi = NULL
+  s.color = GRAY
+  s.d = 0
+  s.pi = NULL
+  Q = {}
+  ENQUEUE(Q, s)
+  while Q != {}
+    u = DEQUEUE(Q)
+    for each (v from G.Adj[u])
+      if v.color == WHITE
+        v.color = GRAY
+        v.d = u.d + 1
+        v.pi = u
+        ENQUEUE(Q.V)
+    u.color = BLACK
+``
