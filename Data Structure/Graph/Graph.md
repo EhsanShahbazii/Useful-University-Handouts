@@ -47,7 +47,7 @@
 
 ### تابع پیمایش سطحی
 شبه کد پیمایش سطحی (DFS) به صورت زیر است:
-``pseudocode
+```pseudocode
 BFS(G, s)
   for each vertex (u from G.V - {s})
     u.color = WHITE
@@ -67,4 +67,6 @@ BFS(G, s)
         v.pi = u
         ENQUEUE(Q.V)
     u.color = BLACK
-``
+```
+اگر روی یک گراف پیمایش سطحی (DFS) بزنیم گراف به دست آمده درخت خواهد بود.
+
