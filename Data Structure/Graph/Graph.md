@@ -70,3 +70,30 @@ BFS(G, s)
 ```
 اگر روی یک گراف پیمایش سطحی (DFS) بزنیم گراف به دست آمده درخت خواهد بود.
 
+### پیمایش عمقی (DFS)
+با شروع از یک گره آن را ملاقات کرده و سپس کلیه گره های سمت چپ را تا آخرین عمق پیمایش می کنیم. اگر در پایین رفتن های متوالی، گره های ملاقات شود که هیچ گره همجواری نداشته باشد، با تمام گره های همجوار آ« ملاقات شده باشد، برگشت به یک سطح بالا انجام می گیرند و روند فوق تکرار می شود.
+
+### الگوریتم جستجوی اول عمق
+```pseudocode
+DFS(G)
+  for each vertex (u from G.V)
+    u.color = WHITE
+    u.pi = NULL
+  time = 0
+  for rach vertex (u from G.V)
+    if u.color == WHITE
+      DFS-VISIT(G, u)
+      
+DFS-VISIT(G, u)
+  time = time + 1
+  u.d = time
+  u.color = GRAY
+  for each (v from G.Adj[u])
+    if v.color == WHITE
+      v.pi = u
+      DFS-VISIT(G, v)
+  u.color = BLACK
+  time = time + 1
+  u.f = time
+```
+مرتبه این الگوریتم از `V + E` می باشد.
